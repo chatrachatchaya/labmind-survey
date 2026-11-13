@@ -32,7 +32,7 @@
 <script>
 'use strict';
 // แก้ลิงก์บรรทัดนี้เท่านั้น หากเปลี่ยน Google Form ในอนาคต
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSevs535Hn021Q-j_Wg4aQzZip6vmPvw1n0zQEQcka_fmG2MpA/viewform';
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSevs535Hn021Q-j_Wg4aQzZip6vmPvwln0zQEQcka_fmG2MpA/viewform?usp=header';
 const url = new URL(GOOGLE_FORM_URL);
 document.getElementById('surveyFrame').src = url.toString() + (url.search ? '&' : '?') + 'embedded=true';
 for (const id of ['openFormTop','openFormHeader','openFormBottom']) document.getElementById(id).href = GOOGLE_FORM_URL;
