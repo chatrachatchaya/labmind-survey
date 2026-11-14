@@ -1,41 +1,452 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
+<base target="_top">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fffafa">
-<meta name="description" content="แบบประเมินการใช้งาน LabMind CHEM RMUTI ผ่าน Google Forms สำหรับนักศึกษา อาจารย์ และบุคลากร">
-<title>LabMind | แบบประเมินประสบการณ์ใช้งาน</title>
+<title>แบบสอบถามประเมินการใช้งานจริง LabMind</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fffafa;--ink:#24313a;--muted:#65747d;--rose:#f9dfe5;--pink:#b85070;--lightpink:#fff1f4;--teal:#dcefe9;--deepteal:#246d64;--line:#eadfe2;--white:#fff;--shadow:0 16px 40px rgba(51,49,57,.06)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Sarabun,'Noto Sans Thai',sans-serif;font-size:16px;line-height:1.65}a{color:inherit}.wrap{max-width:1110px;margin:auto;padding:0 24px}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px;z-index:200}.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.93)}.nav{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:16px}.logo{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-symbol{display:grid;place-items:center;width:43px;height:43px;border-radius:15px;background:var(--rose);color:#a64765;font-weight:800;font-size:24px}.brand{font-size:24px;font-weight:800;line-height:1.05;letter-spacing:-.6px}.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.4px;font-weight:600;margin-top:5px}.navlink{text-decoration:none;color:var(--deepteal);font-weight:700;font-size:14px;padding:9px 14px;border-radius:999px;background:var(--teal)}
-.hero{padding:70px 0 48px}.hero-grid{display:grid;grid-template-columns:1.17fr .83fr;gap:48px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;background:var(--lightpink);color:#924764;border:1px solid #f5d6e0;border-radius:999px;font-size:13px;font-weight:700}.dot{height:8px;width:8px;background:#bc6580;border-radius:50%}h1{font-weight:800;font-size:clamp(34px,4.5vw,59px);line-height:1.21;letter-spacing:-1.5px;margin:24px 0 17px}h1 em{font-style:normal;color:var(--pink)}.lead{max-width:620px;color:#51616c;font-size:19px;margin:0 0 24px}.sublead{font-weight:700;color:var(--deepteal);font-size:16px;margin:0 0 26px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border-radius:12px;text-decoration:none;font-weight:700;transition:transform .15s,box-shadow .15s;font-size:16px;cursor:pointer;border:1px solid transparent}.btn:hover{transform:translateY(-2px)}.btn:focus-visible,.navlink:focus-visible{outline:3px solid #86c2b4;outline-offset:3px}.btn-primary{background:var(--deepteal);color:#fff;box-shadow:0 6px 18px rgba(36,109,100,.18)}.btn-secondary{background:white;border-color:#d3dbd7;color:#295c55}.note{color:var(--muted);font-size:13px;margin-top:15px}.illustration{position:relative;min-height:376px}.abstract{position:absolute;inset:30px 20px 20px 25px;background:#fce8ee;border-radius:34px;border:1px solid #f3d7df}.shape{position:absolute;width:180px;height:180px;border-radius:50%;background:var(--teal);right:-18px;top:0}.phone{position:relative;margin:0 auto;width:min(290px,90%);background:white;padding:18px 17px 22px;border-radius:28px;box-shadow:var(--shadow);border:1px solid #efe0e4;top:7px;transform:rotate(-2deg)}.phone-bar{display:flex;align-items:center;gap:9px;padding-bottom:13px;border-bottom:1px solid #f0e9eb;font-weight:800}.avatar{border-radius:12px;width:36px;height:36px;background:var(--teal);display:grid;place-items:center;font-size:18px}.bubble{padding:11px 13px;border-radius:15px;margin-top:13px;font-size:13px}.user{background:#e3f2eb;margin-left:32px;border-bottom-right-radius:3px}.answer{background:#fff3f5;margin-right:22px;border-bottom-left-radius:3px}.answer b{color:#97516b}.mini{background:#fff;border:1px solid #f2e0e3;border-radius:10px;padding:8px 10px;font-size:12px;margin-top:7px}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #e5dfe1;background:#fff;padding:6px 13px;border-radius:999px;font-size:13px;color:#64717a}
-.section{padding:34px 0}.section h2{font-size:29px;letter-spacing:-.6px;margin:0 0 8px;line-height:1.4}.section>div>p.section-desc{color:var(--muted);margin:0 0 23px}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.feature{background:#fff;border:1px solid var(--line);padding:23px 19px;border-radius:18px;box-shadow:0 4px 18px rgba(30,30,50,.025)}.feature-icon{width:43px;height:43px;display:grid;place-items:center;background:var(--teal);color:var(--deepteal);border-radius:13px;font-size:23px}.feature:nth-child(2) .feature-icon,.feature:nth-child(4) .feature-icon{background:var(--lightpink);color:var(--pink)}.feature h3{margin:16px 0 7px;font-size:17px}.feature p{font-size:14px;color:var(--muted);margin:0}
-.intro{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px 28px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;margin:24px 0}.intro h3{margin:0 0 5px;font-size:20px}.intro p{margin:0;color:var(--muted);font-size:15px}.time{white-space:nowrap;color:var(--deepteal);background:var(--teal);border-radius:14px;padding:12px 18px;font-size:14px;font-weight:800}
-.form-section{padding:42px 0 75px}.form-shell{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}.form-header{padding:22px 30px;background:#f8edf0;border-bottom:1px solid #f0dfe5;display:flex;justify-content:space-between;align-items:center;gap:16px}.form-header h2{font-size:21px;margin:0}.form-header p{font-size:13px;color:var(--muted);margin:3px 0 0}.newtab{font-size:13px;text-decoration:none;color:var(--deepteal);font-weight:700}.form-frame{width:100%;height:1650px;border:0;display:block;background:white}.fallback{margin:0;padding:18px 26px 24px;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid #f3edef}.fallback a{color:var(--deepteal);font-weight:700}.privacy{display:flex;gap:13px;align-items:start;margin-top:20px;color:#63737a;font-size:14px}.privacy-icon{flex:none;width:32px;height:32px;border-radius:10px;background:var(--teal);display:grid;place-items:center}footer{border-top:1px solid var(--line);padding:25px 0 34px;background:white;color:#78838b;font-size:13px}.foot{display:flex;align-items:center;justify-content:space-between;gap:20px}.foot strong{color:var(--ink)}
-@media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:18px}.hero{padding-top:50px}.illustration{min-height:310px;max-width:440px;width:100%;margin:auto}.phone{width:255px}.features{grid-template-columns:repeat(2,1fr)}.abstract{inset:25px 40px 0 40px}.shape{right:28px}.intro{grid-template-columns:1fr}.time{width:max-content}}@media(max-width:560px){.wrap{padding:0 16px}.nav{min-height:66px}.brand{font-size:21px}.navlink{font-size:12px;padding:7px 10px}.hero{padding:38px 0 30px}.lead{font-size:16px}h1{font-size:35px}.illustration{display:none}.features{grid-template-columns:1fr 1fr;gap:9px}.feature{padding:15px 12px}.feature h3{font-size:15px}.feature p{font-size:12px}.section h2{font-size:24px}.form-header{padding:16px;align-items:start;flex-direction:column}.form-frame{height:1850px}.foot{align-items:start;flex-direction:column;gap:5px}.btn{padding:11px 15px;font-size:14px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.btn:hover{transform:none}}
+  :root{
+    --ink:#0f2a2e; --ink-2:#4a6367; --muted:#8aa0a3;
+    --bg:#f2f7f6; --card:#ffffff; --line:#dfe9e8;
+    --brand:#0e7c7b; --brand-2:#14a3a1; --brand-soft:#e3f4f3;
+    --accent:#ff7a59; --ok:#1f9d6b; --err:#d64545;
+    --r:18px; --shadow:0 1px 2px rgba(15,42,46,.06),0 8px 24px rgba(15,42,46,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'IBM Plex Sans Thai',system-ui,sans-serif; color:var(--ink);
+    background:var(--bg); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  h1,h2,h3,.kanit{font-family:'Kanit',sans-serif;font-weight:500;letter-spacing:.1px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 120px}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(242,247,246,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar-in{max-width:720px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+  .logo{display:flex;align-items:center;gap:8px;font-family:'Kanit';font-weight:600;font-size:17px;color:var(--brand)}
+  .logo svg{width:26px;height:26px}
+  .step-label{margin-left:auto;font-size:13px;color:var(--ink-2)}
+  .bar{height:4px;background:var(--line)}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .45s cubic-bezier(.2,.8,.2,1)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;margin:20px 0 18px;border-radius:24px;color:#fff;padding:32px 24px 28px;
+    background:radial-gradient(120% 140% at 100% 0%,#1fb8b4 0%,#0e7c7b 45%,#0b4f55 100%);
+    box-shadow:var(--shadow);
+  }
+  .hero h1{font-size:28px;line-height:1.25;margin:10px 0 6px}
+  .hero .tag{display:inline-block;font-size:12.5px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:3px 10px;border-radius:99px}
+  .hero p{margin:6px 0 0;opacity:.92}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .hero .meta span{font-size:13px;background:rgba(0,0,0,.16);padding:6px 12px;border-radius:99px}
+  .hero .deco{position:absolute;right:-30px;top:-20px;width:220px;opacity:.18;pointer-events:none}
+
+  /* ---------- section ---------- */
+  .section{display:none;animation:fade .35s ease}
+  .section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .sec-head{margin:26px 4px 14px}
+  .sec-head .kicker{font-size:13px;font-weight:600;color:var(--brand);text-transform:uppercase;letter-spacing:.6px}
+  .sec-head h2{font-size:23px;margin:2px 0 4px}
+  .sec-head p{margin:0;color:var(--ink-2);font-size:14.5px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:14px;box-shadow:var(--shadow);transition:border-color .2s, box-shadow .2s}
+  .card.invalid{border-color:var(--err);box-shadow:0 0 0 3px rgba(214,69,69,.12)}
+  .q-title{font-weight:500;font-size:16.5px;margin:0 0 4px}
+  .q-title .req{color:var(--accent);margin-left:2px}
+  .q-desc{font-size:14px;color:var(--ink-2);margin:0 0 12px}
+  .q-err{display:none;color:var(--err);font-size:13.5px;margin-top:10px}
+  .card.invalid .q-err{display:block}
+
+  /* choice */
+  .opts{display:grid;gap:8px;margin-top:12px}
+  .opts.cols{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+  .opt{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;transition:all .15s;background:#fff;user-select:none}
+  .opt:hover{border-color:#b8d8d6;background:#fafdfd}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #b9cccd;display:grid;place-items:center;transition:all .15s}
+  .opt.cb .dot{border-radius:6px}
+  .opt .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff;transform:scale(0);transition:transform .15s}
+  .opt.cb .dot::after{width:10px;height:6px;border-radius:0;background:none;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) scale(0);margin-top:-2px}
+  .opt.on{border-color:var(--brand);background:var(--brand-soft)}
+  .opt.on .dot{border-color:var(--brand);background:var(--brand)}
+  .opt.on .dot::after{transform:scale(1)}
+  .opt.cb.on .dot::after{transform:rotate(-45deg) scale(1)}
+  .opt span{font-size:15px}
+
+  /* likert */
+  .lk-legend{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin:2px 2px 0}
+  .lk-row{padding:16px 0;border-top:1px dashed var(--line)}
+  .lk-row:first-of-type{border-top:0;padding-top:6px}
+  .lk-q{font-size:15.5px;margin-bottom:10px}
+  .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .sc{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 0 8px;text-align:center;cursor:pointer;transition:all .15s;font-family:inherit;color:var(--ink)}
+  .sc b{display:block;font-family:'Kanit';font-weight:500;font-size:19px;line-height:1}
+  .sc small{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.2}
+  .sc:hover{border-color:#b8d8d6}
+  .sc.on{color:#fff;border-color:transparent}
+  .sc.on small{color:rgba(255,255,255,.85)}
+  .sc[data-v="1"].on{background:#d9634c}.sc[data-v="2"].on{background:#e9965b}.sc[data-v="3"].on{background:#9aa9ab}
+  .sc[data-v="4"].on{background:#2fa59a}.sc[data-v="5"].on{background:#0e7c7b}
+  .na{margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2);border:1.5px dashed #c9d8d8;border-radius:99px;padding:4px 12px;cursor:pointer;background:none;font-family:inherit;transition:all .15s}
+  .na.on{border-style:solid;border-color:var(--ink-2);background:var(--ink-2);color:#fff}
+
+  textarea{width:100%;min-height:110px;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;font-size:15px;resize:vertical;margin-top:10px;outline:none;transition:border-color .15s}
+  textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(14,124,123,.12)}
+
+  /* nav */
+  .nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .nav-in{max-width:720px;margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;gap:10px}
+  .btn{appearance:none;border:0;border-radius:14px;padding:13px 22px;font:500 16px 'Kanit',sans-serif;cursor:pointer;transition:transform .1s, background .2s, opacity .2s}
+  .btn:active{transform:scale(.98)}
+  .btn.primary{flex:1;background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(14,124,123,.25)}
+  .btn.primary:hover{background:#0b6968}
+  .btn.ghost{background:#eef4f3;color:var(--ink)}
+  .btn[disabled]{opacity:.55;pointer-events:none}
+  .btn.hidden{display:none}
+
+  /* done */
+  .done{text-align:center;padding:60px 20px}
+  .done .badge{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--brand-soft);animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+  .done h2{font-size:26px;margin:0 0 6px}
+  .done p{color:var(--ink-2);margin:0}
+
+  .demo{font-size:12.5px;text-align:center;color:#8a5a00;background:#fff4d6;border:1px solid #f3dd9d;border-radius:10px;padding:6px 10px;margin-top:14px}
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:all .25s;z-index:30;pointer-events:none;max-width:90vw}
+  .toast.show{opacity:1;transform:translateX(-50%)}
+
+  @media (max-width:480px){
+    .hero{padding:26px 20px 22px;border-radius:20px}
+    .hero h1{font-size:24px}
+    .card{padding:16px}
+    .sc small{display:none}
+    .sc{padding:12px 0}
+  }
 </style>
 </head>
 <body>
-<a class="skip" href="#questionnaire">ข้ามไปยังแบบสอบถาม</a>
-<header class="top"><div class="wrap nav"><a class="logo" href="#top" aria-label="LabMind กลับด้านบน"><span class="logo-symbol">✳</span><span class="brand">LabMind<small>CHEM RMUTI · USER SURVEY</small></span></a><a class="navlink" href="#questionnaire">ทำแบบประเมิน ↗</a></div></header>
-<main id="top">
-<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow"><span class="dot"></span> แบบประเมินการทดลองใช้งานจริง</span><h1>เสียงของคุณ<br>ช่วยให้ <em>LabMind</em><br>ดียิ่งขึ้น</h1><p class="lead">ร่วมประเมินประสบการณ์ใช้งาน AI ผู้ช่วยสำหรับงานวิจัย วิธีวิเคราะห์ การจองเครื่องมือ และความปลอดภัยในห้องปฏิบัติการ</p><p class="sublead">The Lab That Thinks With You. · One Lab. Three Minds.</p><div class="actions"><a class="btn btn-primary" href="#questionnaire">เริ่มทำแบบประเมิน <span aria-hidden="true">↘</span></a><a class="btn btn-secondary" id="openFormTop" href="#" target="_blank" rel="noopener noreferrer">เปิด Google Form แยกหน้า ↗</a></div><div class="meta"><span class="pill">◷ ประมาณ 6–8 นาที</span><span class="pill">✓ นักศึกษา · อาจารย์ · บุคลากร</span><span class="pill">♧ ไม่ต้องกรอกชื่อ</span></div></div><div class="illustration" aria-hidden="true"><div class="abstract"></div><div class="shape"></div><div class="phone"><div class="phone-bar"><span class="avatar">✳</span><span>LabMind CHEM RMUTI</span></div><div class="bubble user">อยากวัดวิตามินซีในน้ำส้ม ใช้วิธีไหนดี?</div><div class="bubble answer"><b>MethodMind</b><div>ช่วยเปรียบเทียบวิธีวิเคราะห์ตามตัวอย่างและทรัพยากรของห้องปฏิบัติการ</div><div class="mini">✓ วิธีใช้เครื่องมือ<br>✓ วิธีคลาสสิก<br>✓ แหล่งอ้างอิงที่ตรวจสอบได้</div></div><div class="bubble user">HPLC พรุ่งนี้บ่ายว่างไหม?</div><div class="bubble answer">ตรวจสอบตารางจองจริงและเปิดลิงก์จองได้</div></div></div></div></section>
-<section class="section" aria-labelledby="aboutTitle"><div class="wrap"><h2 id="aboutTitle">LabMind ช่วยเรื่องอะไรบ้าง?</h2><p class="section-desc">แบบประเมินนี้ใช้รับฟังประสบการณ์จากผู้ที่ทดลองใช้งาน LabMind จริง</p><div class="features"><article class="feature"><div class="feature-icon" aria-hidden="true">▦</div><h3>จองเครื่องมือ</h3><p>สอบถามเวลาว่างด้วยภาษาไทย พร้อมลิงก์จองเครื่องมือ</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">⚗</div><h3>วิธีวิเคราะห์</h3><p>สืบค้นวิธีวิเคราะห์ งานวิจัย และทางเลือกตามทรัพยากรที่มี</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">♢</div><h3>ความปลอดภัย</h3><p>ค้นข้อมูลสารเคมี อันตราย และแนวทางจำแนกของเสีย</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">▧</div><h3>ส่งภาพถาม AI</h3><p>อธิบายฉลากสารเคมี กราฟ และข้อความจากหน้าจอเครื่องมือ</p></article></div><div class="intro"><div><h3>การตอบของคุณมีความสำคัญ</h3><p>ความคิดเห็นจะใช้ประเมินและปรับปรุงระบบ โดยรายงานผลเป็นภาพรวม ไม่ระบุตัวบุคคล การตอบเป็นไปโดยสมัครใจและไม่มีผลต่อคะแนนรายวิชา</p></div><span class="time">6–8 นาที</span></div></div></section>
-<section class="form-section" id="questionnaire"><div class="wrap"><div class="form-shell"><div class="form-header"><div><h2>แบบสอบถามประสบการณ์การใช้งาน LabMind</h2><p>กรอกแบบประเมินด้านล่าง หรือเปิดใน Google Forms โดยตรง</p></div><a class="newtab" id="openFormHeader" href="#" target="_blank" rel="noopener noreferrer">เปิดฟอร์มเต็มหน้า ↗</a></div><iframe class="form-frame" id="surveyFrame" title="แบบสอบถามประเมินการใช้งาน LabMind" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">เบราว์เซอร์ไม่รองรับการแสดงฟอร์มในหน้านี้</iframe><p class="fallback">หากแบบสอบถามด้านบนไม่แสดง <a id="openFormBottom" href="#" target="_blank" rel="noopener noreferrer">คลิกเพื่อเปิดฟอร์มในหน้าใหม่</a></p></div><div class="privacy"><span class="privacy-icon" aria-hidden="true">♧</span><span>คำตอบจะถูกส่งตรงไปยัง Google Forms ที่ผู้จัดทำแบบสอบถามตั้งค่าไว้ เว็บไซต์นี้ไม่เก็บคำตอบเอง และไม่มีการร้องขอรหัสผ่านหรือข้อมูลบัญชี Google</span></div></div></section>
-</main>
-<footer><div class="wrap foot"><span><strong>LabMind CHEM RMUTI</strong> · Applied Chemistry, RMUTI</span><span>© 2026 Chatrachatchaya, Ph.D., Applied Chemistry, RMUTI.</span></div></footer>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M12 4h8M13 4v8L6.5 24.5A2.5 2.5 0 0 0 8.7 28h14.6a2.5 2.5 0 0 0 2.2-3.5L19 12V4" stroke="#0e7c7b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 21h14" stroke="#14a3a1" stroke-width="2.2" stroke-linecap="round"/><circle cx="14" cy="24.5" r="1.3" fill="#ff7a59"/><circle cx="18.5" cy="23" r="1" fill="#14a3a1"/></svg>
+      LabMind
+    </div>
+    <div class="step-label" id="stepLabel">เริ่มต้น</div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</div>
+
+<div class="wrap">
+  <div id="app"></div>
+</div>
+
+<div class="nav" id="nav">
+  <div class="nav-in">
+    <button class="btn ghost hidden" id="back">ย้อนกลับ</button>
+    <button class="btn primary" id="next">เริ่มทำแบบสอบถาม</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
 <script>
-'use strict';
-// แก้ลิงก์บรรทัดนี้เท่านั้น หากเปลี่ยน Google Form ในอนาคต
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSevs535Hn021Q-j_Wg4aQzZip6vmPvwln0zQEQcka_fmG2MpA/viewform?usp=header';
-const url = new URL(GOOGLE_FORM_URL);
-document.getElementById('surveyFrame').src = url.toString() + (url.search ? '&' : '?') + 'embedded=true';
-for (const id of ['openFormTop','openFormHeader','openFormBottom']) document.getElementById(id).href = GOOGLE_FORM_URL;
+/* =========================================================
+   ข้อมูลแบบสอบถาม (ข้อความ/ตัวเลือกต้องตรงกับ Google Form)
+   ========================================================= */
+const LIKERT = ["5 เห็นด้วยอย่างยิ่ง","4 เห็นด้วย","3 ปานกลาง","2 ไม่เห็นด้วย","1 ไม่เห็นด้วยอย่างยิ่ง"];
+const NA = "ยังไม่เคยใช้/ประเมินไม่ได้";
+const LK_DESC = "ประเมินเฉพาะข้อที่มีประสบการณ์จริง หากยังไม่เคยใช้ความสามารถนั้นเลือก “ยังไม่เคยใช้/ประเมินไม่ได้”";
+
+const SECTIONS = [
+  { kicker:"ก่อนเริ่ม", title:"ความยินยอมในการให้ข้อมูล", items:[
+    {type:"radio", id:501755955, req:true, title:"การนำข้อมูลคำตอบไปใช้ประเมินและนำเสนอผลโครงการ",
+     desc:"การตอบเป็นไปโดยสมัครใจ หากไม่ยินยอมสามารถออกจากแบบสอบถามได้โดยไม่กระทบต่อการเรียนหรือการทำงาน",
+     options:["ยินยอมให้ใช้คำตอบแบบไม่ระบุตัวตนเพื่อประเมินและรายงานผล","ไม่ยินยอม"]}
+  ]},
+  { kicker:"ตอนที่ 1", title:"ประสบการณ์การใช้งาน", items:[
+    {type:"radio", id:554191773, req:true, title:"1. สถานภาพผู้ตอบ", cols:true, options:["นักศึกษา","อาจารย์","นักวิทยาศาสตร์/เจ้าหน้าที่","อื่น ๆ"]},
+    {type:"radio", id:766905141, req:true, title:"2. ระดับการศึกษา", desc:"ผู้ที่ไม่ใช่นักศึกษาเลือก “ไม่เกี่ยวข้อง”", cols:true, options:["ปวส.","ปริญญาตรี","อื่น ๆ","ไม่เกี่ยวข้อง"]},
+    {type:"radio", id:1458067327, req:true, title:"3. ประสบการณ์ใช้ AI เพื่อสืบค้นข้อมูลวิทยาศาสตร์", cols:true, options:["ไม่เคยก่อนใช้ LabMind","ใช้นาน ๆ ครั้ง","ใช้เป็นบางครั้ง","ใช้เป็นประจำ"]},
+    {type:"radio", id:505988669, req:true, title:"4. จำนวนครั้งที่เคยใช้ LabMind", cols:true, options:["1 ครั้ง","2–5 ครั้ง","6–10 ครั้ง","มากกว่า 10 ครั้ง"]},
+    {type:"check", id:1476040938, title:"5. ความสามารถของ LabMind ที่เคยใช้", desc:"เลือกได้หลายข้อ", cols:true, options:["ค้นข้อมูลสารเคมีและสมบัติ","ค้นข้อมูลอันตราย/ความปลอดภัย","ค้นงานวิจัยหรือ DOI","แนะนำ/เปรียบเทียบวิธีวิเคราะห์","อธิบายขั้นตอนทดลอง","ตรวจสอบเวลาว่าง/จองเครื่องมือ","สอบถามการจัดการของเสีย","ส่งภาพฉลาก/กราฟ/หน้าจอเครื่องมือ","อื่น ๆ"]}
+  ]},
+  { kicker:"ตอนที่ 2", title:"ความสะดวกและคุณภาพคำตอบ", items:[
+    {type:"likert", title:"ด้านความสะดวกในการใช้งาน", rows:[
+      [283019213,"6. การเข้าใช้ LabMind ผ่าน LINE สะดวก"],
+      [1793680235,"7. พิมพ์คำถามภาษาไทยได้ง่าย"],
+      [2146923867,"8. ภาษาคำตอบอ่านและเข้าใจง่าย"],
+      [1224568284,"9. ความยาวคำตอบเหมาะกับการอ่านบน LINE"],
+      [854952869,"10. เข้าถึงข้อมูลที่ต้องการได้สะดวก"]]},
+    {type:"likert", title:"ด้านคุณภาพคำตอบ", rows:[
+      [846863314,"11. คำตอบเกี่ยวข้องกับคำถาม"],
+      [216109391,"12. มีข้อมูลเพียงพอสำหรับการค้นต่อ"],
+      [1501629213,"13. ช่วยอธิบายข้อมูลวิทยาศาสตร์ได้เข้าใจง่าย"],
+      [811593077,"14. ระบุข้อจำกัดของคำตอบเมื่อจำเป็น"],
+      [1582320035,"15. ใช้ประกอบการค้นคว้าหรือวางแผนต่อได้"]]}
+  ]},
+  { kicker:"ตอนที่ 3", title:"แหล่งอ้างอิงและการตรวจสอบ", items:[
+    {type:"likert", title:"ความน่าเชื่อถือและการตรวจสอบข้อมูล", rows:[
+      [435951756,"16. มีลิงก์/แหล่งอ้างอิงให้ตรวจสอบได้"],
+      [1782059847,"17. สามารถเปิดอ้างอิงเพื่อตรวจข้อมูลเพิ่มเติมได้"],
+      [1350436227,"18. ข้อมูลสอดคล้องกับแหล่งอื่นที่ได้ตรวจจริง"],
+      [637018027,"19. การแสดงอ้างอิงช่วยให้ตัดสินใจตรวจสอบต่อ"],
+      [1379799500,"20. ตระหนักว่าต้องตรวจสอบคำตอบ AI ก่อนนำไปใช้จริง"]]}
+  ]},
+  { kicker:"ตอนที่ 4", title:"ประโยชน์ต่อการเรียนและงาน", items:[
+    {type:"likert", title:"ประโยชน์ที่ได้รับ", rows:[
+      [2101936889,"21. เป็นประโยชน์ต่อการค้นข้อมูลวิทยาศาสตร์"],
+      [965250123,"22. ช่วยให้รู้แนวทางสืบค้นต่อ"],
+      [1103684726,"23. ช่วยให้เข้าใจวิธีวิเคราะห์หรือหลักการมากขึ้น"],
+      [2099366337,"24. ช่วยพิจารณาทางเลือกวิธีหรือเครื่องมือ"],
+      [1644889598,"25. มีประโยชน์ต่อการเรียน/สอน/วิจัย/ปฏิบัติงาน"]]}
+  ]},
+  { kicker:"ตอนที่ 5", title:"ความสามารถที่เคยใช้จริง", desc:"หากยังไม่เคยใช้หัวข้อใด เลือก “ยังไม่เคยใช้/ประเมินไม่ได้”", items:[
+    {type:"likert", title:"การค้นวิธีวิเคราะห์และเครื่องมือ", rows:[
+      [49598130,"26. ระบบแนะนำข้อมูล/วิธีที่เกี่ยวข้องกับโจทย์"],
+      [1768108673,"27. วิธีคลาสสิกและวิธีใช้เครื่องมือเป็นทางเลือกที่มีประโยชน์"],
+      [1834127096,"28. การแสดงเครื่องมือของสาขาช่วยวางแผนต่อ"]]},
+    {type:"likert", title:"การจองเครื่องมือ ความปลอดภัย และภาพ", rows:[
+      [759506723,"29. สอบถามเวลาว่างเครื่องมือผ่าน LINE สะดวก"],
+      [199100331,"30. ลิงก์จองจากคำตอบช่วยให้ดำเนินการต่อได้ง่าย"],
+      [954400463,"31. ค้นข้อมูลอันตรายของสารเคมีได้สะดวก"],
+      [1983294249,"32. ค้นแนวทางจัดการของเสียได้สะดวก"],
+      [1654035428,"33. การส่งภาพช่วยให้ได้คำอธิบายที่เป็นประโยชน์"]]}
+  ]},
+  { kicker:"ตอนที่ 6", title:"ความพึงพอใจและข้อเสนอแนะ", items:[
+    {type:"likert", title:"ความพึงพอใจโดยรวม", rows:[
+      [37145492,"34. โดยรวมพึงพอใจต่อ LabMind"],
+      [341236569,"35. ต้องการใช้งานต่อไป"],
+      [1542959242,"36. เหมาะสมที่จะพัฒนาเป็นระบบสนับสนุนของสาขา"]]},
+    {type:"radio", id:668991101, req:true, title:"37. ความสามารถที่มีประโยชน์ที่สุด", cols:true, options:["ค้นข้อมูลสารเคมี","ค้นงานวิจัย/วิธีวิเคราะห์","แนะนำเครื่องมือและวิธีทางเลือก","ตรวจ/จองเครื่องมือ","ความปลอดภัย/ของเสีย","อ่านภาพ","อื่น ๆ"]},
+    {type:"radio", id:601314728, req:true, title:"38. เคยพบคำตอบผิด ไม่ตรงคำถาม หรือไม่ชัดเจนหรือไม่", cols:true, options:["ไม่เคยพบ","เคยพบ","ไม่แน่ใจ"]},
+    {type:"text", id:1510279308, title:"39. หากเคยพบปัญหา กรุณายกตัวอย่าง", desc:"ไม่บังคับ", placeholder:"เช่น ถามเรื่อง… แล้วได้คำตอบที่…"},
+    {type:"check", id:109963386, title:"40. ด้านที่อยากให้ปรับปรุง", desc:"เลือกได้หลายข้อ", cols:true, options:["ความถูกต้อง","แหล่งอ้างอิง","ความครบถ้วน","ความเร็ว","ความกระชับ","วิธีวิเคราะห์","ระบบจอง","ความปลอดภัย","อ่านภาพ","อื่น ๆ"]},
+    {type:"text", id:1302900905, title:"41. ข้อเสนอแนะเพิ่มเติม", desc:"ไม่บังคับ", placeholder:"พิมพ์ข้อเสนอแนะของคุณที่นี่"}
+  ]}
+];
+const CONSENT_YES = SECTIONS[0].items[0].options[0];
+const CONSENT_ID = 501755955;
+
+/* ========================================================= */
+const answers = {};            // { entryId: string | string[] }
+let step = -1;                 // -1 = หน้าแรก, 0..6 = ตอน, 7 = เสร็จ
+const app = document.getElementById('app');
+const isLive = typeof google !== 'undefined' && google.script && google.script.run;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function heroHTML(){
+  return `
+  <section class="section active" data-step="-1">
+    <div class="hero">
+      <svg class="deco" viewBox="0 0 200 200" fill="none" stroke="#fff" stroke-width="3">
+        <polygon points="100,20 140,43 140,89 100,112 60,89 60,43"/>
+        <polygon points="140,89 180,112 180,158 140,181 100,158 100,112"/>
+        <circle cx="100" cy="20" r="7" fill="#fff"/><circle cx="180" cy="158" r="7" fill="#fff"/><circle cx="60" cy="89" r="5" fill="#fff"/>
+      </svg>
+      <span class="tag">LabMind CHEM RMUTI</span>
+      <h1>LabMind — The Lab That Thinks With You.</h1>
+      <p>แบบสอบถามสำหรับนักศึกษาในรายวิชาสารสนเทศทางเคมี และอาจารย์/บุคลากรที่เคยใช้งานจริง</p>
+      <p>ใช้ศึกษาความสะดวก คุณภาพคำตอบ การตรวจสอบแหล่งอ้างอิง ประโยชน์ และความพึงพอใจ</p>
+      <div class="meta">
+        <span>⏱ ประมาณ 6–8 นาที</span>
+        <span>🔒 ไม่เก็บชื่อหรือรหัสนักศึกษา</span>
+        <span>📊 รายงานผลเป็นภาพรวม</span>
+        <span>🙋 เข้าร่วมโดยสมัครใจ</span>
+      </div>
+    </div>
+    ${isLive ? '' : '<div class="demo">โหมดตัวอย่าง: หน้านี้ยังไม่ส่งคำตอบจริง จะส่งได้เมื่อ Deploy ผ่าน Apps Script</div>'}
+  </section>`;
+}
+
+function itemHTML(it, sIdx, iIdx){
+  const key = `s${sIdx}i${iIdx}`;
+  if (it.type === 'radio' || it.type === 'check'){
+    const cb = it.type === 'check';
+    const opts = it.options.map((o,k) => `
+      <label class="opt ${cb?'cb':''}" data-id="${it.id}" data-v="${esc(o)}">
+        <input type="${cb?'checkbox':'radio'}" name="e${it.id}">
+        <i class="dot"></i><span>${esc(o)}</span>
+      </label>`).join('');
+    return `<div class="card" id="${key}" data-req="${it.req?1:0}" data-id="${it.id}">
+      <h3 class="q-title">${esc(it.title)}${it.req?'<span class="req">*</span>':''}</h3>
+      ${it.desc?`<p class="q-desc">${esc(it.desc)}</p>`:''}
+      <div class="opts ${it.cols?'cols':''}">${opts}</div>
+      <div class="q-err">กรุณาเลือกคำตอบข้อนี้</div>
+    </div>`;
+  }
+  if (it.type === 'text'){
+    return `<div class="card" id="${key}">
+      <h3 class="q-title">${esc(it.title)}</h3>
+      ${it.desc?`<p class="q-desc">${esc(it.desc)}</p>`:''}
+      <textarea data-id="${it.id}" placeholder="${esc(it.placeholder||'')}"></textarea>
+    </div>`;
+  }
+  if (it.type === 'likert'){
+    const rows = it.rows.map(([id,label]) => {
+      const btns = [1,2,3,4,5].map(n => {
+        const val = LIKERT[5-n];
+        const sub = val.replace(/^\d\s/,'');
+        return `<button type="button" class="sc" data-id="${id}" data-v="${n}" data-val="${esc(val)}"><b>${n}</b><small>${esc(sub)}</small></button>`;
+      }).join('');
+      return `<div class="lk-row">
+        <div class="lk-q">${esc(label)}</div>
+        <div class="scale">${btns}</div>
+        <div class="lk-legend"><span>ไม่เห็นด้วยอย่างยิ่ง</span><span>เห็นด้วยอย่างยิ่ง</span></div>
+        <button type="button" class="na" data-id="${id}" data-val="${esc(NA)}">ยังไม่เคยใช้ / ประเมินไม่ได้</button>
+      </div>`;
+    }).join('');
+    return `<div class="card" id="${key}">
+      <h3 class="q-title">${esc(it.title)}</h3>
+      <p class="q-desc">${esc(LK_DESC)}</p>
+      ${rows}
+    </div>`;
+  }
+  return '';
+}
+
+function render(){
+  let html = heroHTML();
+  SECTIONS.forEach((s, i) => {
+    html += `<section class="section" data-step="${i}">
+      <div class="sec-head">
+        <div class="kicker">${esc(s.kicker)}</div>
+        <h2>${esc(s.title)}</h2>
+        ${s.desc?`<p>${esc(s.desc)}</p>`:''}
+      </div>
+      ${s.items.map((it,k)=>itemHTML(it,i,k)).join('')}
+    </section>`;
+  });
+  html += `<section class="section" data-step="done">
+    <div class="done">
+      <div class="badge"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0e7c7b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>
+      <h2 id="doneTitle">ขอบคุณที่ร่วมตอบแบบสอบถาม</h2>
+      <p id="doneText">คำตอบของคุณจะช่วยพัฒนา LabMind ให้ดียิ่งขึ้น</p>
+    </div>
+  </section>`;
+  app.innerHTML = html;
+  bind();
+}
+
+function bind(){
+  // radio / checkbox
+  app.querySelectorAll('.opt').forEach(el => el.addEventListener('click', e => {
+    e.preventDefault();
+    const id = el.dataset.id, v = el.dataset.v, cb = el.classList.contains('cb');
+    const group = app.querySelectorAll(`.opt[data-id="${id}"]`);
+    if (cb){
+      el.classList.toggle('on');
+      answers[id] = [...group].filter(g=>g.classList.contains('on')).map(g=>g.dataset.v);
+    } else {
+      group.forEach(g => g.classList.toggle('on', g === el));
+      answers[id] = v;
+      if (Number(id) === CONSENT_ID) updateNextLabel();
+    }
+    el.closest('.card').classList.remove('invalid');
+  }));
+  // likert
+  app.querySelectorAll('.sc, .na').forEach(el => el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    const row = el.closest('.lk-row');
+    const was = el.classList.contains('on');
+    row.querySelectorAll('.sc,.na').forEach(b => b.classList.remove('on'));
+    if (was){ delete answers[id]; return; }      // กดซ้ำเพื่อยกเลิก
+    el.classList.add('on');
+    answers[id] = el.dataset.val;
+  }));
+  // text
+  app.querySelectorAll('textarea').forEach(t => t.addEventListener('input', () => { answers[t.dataset.id] = t.value; }));
+}
+
+/* ---------- navigation ---------- */
+const nextBtn = document.getElementById('next');
+const backBtn = document.getElementById('back');
+
+function consentGiven(){ return answers[CONSENT_ID] === CONSENT_YES; }
+
+function updateNextLabel(){
+  if (step === -1) nextBtn.textContent = 'เริ่มทำแบบสอบถาม';
+  else if (step === 0 && answers[CONSENT_ID] && !consentGiven()) nextBtn.textContent = 'ส่งแบบสอบถาม';
+  else if (step === SECTIONS.length - 1) nextBtn.textContent = 'ส่งแบบสอบถาม';
+  else nextBtn.textContent = 'ถัดไป';
+}
+
+function show(n){
+  step = n;
+  app.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.dataset.step === String(n)));
+  const total = SECTIONS.length;
+  const pct = n < 0 ? 0 : n === 'done' ? 100 : Math.round((n) / total * 100);
+  document.getElementById('bar').style.width = pct + '%';
+  document.getElementById('stepLabel').textContent =
+    n === -1 ? 'เริ่มต้น' : n === 'done' ? 'เสร็จสิ้น' : `หน้า ${n+1} จาก ${total}`;
+  backBtn.classList.toggle('hidden', !(typeof n === 'number' && n >= 0));
+  updateNextLabel();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function validate(n){
+  const sec = app.querySelector(`.section[data-step="${n}"]`);
+  let first = null;
+  sec.querySelectorAll('.card[data-req="1"]').forEach(c => {
+    const v = answers[c.dataset.id];
+    const ok = Array.isArray(v) ? v.length : !!v;
+    c.classList.toggle('invalid', !ok);
+    if (!ok && !first) first = c;
+  });
+  if (first){ first.scrollIntoView({behavior:'smooth', block:'center'}); toast('กรุณาตอบข้อที่มีเครื่องหมาย * ให้ครบ'); return false; }
+  return true;
+}
+
+nextBtn.addEventListener('click', () => {
+  if (step === -1) return show(0);
+  if (!validate(step)) return;
+  if (step === 0 && !consentGiven()) return submit(false);
+  if (step < SECTIONS.length - 1) return show(step + 1);
+  submit(true);
+});
+backBtn.addEventListener('click', () => { if (typeof step === 'number' && step >= 0) show(step - 1); });
+
+function submit(consent){
+  const payload = { consent, answers: consent ? answers : { [CONSENT_ID]: answers[CONSENT_ID] } };
+  nextBtn.disabled = true; backBtn.disabled = true;
+  nextBtn.textContent = 'กำลังส่ง…';
+  const finish = () => {
+    if (!consent){
+      document.getElementById('doneTitle').textContent = 'ขอบคุณสำหรับเวลาของคุณ';
+      document.getElementById('doneText').textContent = 'เราได้บันทึกว่าคุณไม่ยินยอมเข้าร่วม และจะไม่นำข้อมูลใด ๆ ไปใช้';
+    }
+    document.getElementById('nav').style.display = 'none';
+    show('done');
+  };
+  const fail = err => {
+    nextBtn.disabled = false; backBtn.disabled = false; updateNextLabel();
+    toast('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+    console.error(err);
+  };
+  if (isLive){
+    google.script.run.withSuccessHandler(finish).withFailureHandler(fail).submitResponse(payload);
+  } else {
+    console.log('DEMO payload', payload);
+    setTimeout(finish, 700);
+  }
+}
+
+let tt;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+render();
+show(-1);
 </script>
 </body>
 </html>
