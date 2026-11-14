@@ -119,6 +119,9 @@
   .done h2{font-size:26px;margin:0 0 6px}
   .done p{color:var(--ink-2);margin:0}
 
+  .consent{background:#fff;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:14px;padding:14px 16px;font-size:14.5px;color:var(--ink-2);box-shadow:var(--shadow)}
+  .consent b{color:var(--ink)}
+  .consent p{margin:6px 0 0}
   .demo{font-size:12.5px;text-align:center;color:#8a5a00;background:#fff4d6;border:1px solid #f3dd9d;border-radius:10px;padding:6px 10px;margin-top:14px}
   .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:all .25s;z-index:30;pointer-events:none;max-width:90vw}
   .toast.show{opacity:1;transform:translateX(-50%)}
@@ -152,7 +155,7 @@
 <div class="nav" id="nav">
   <div class="nav-in">
     <button class="btn ghost hidden" id="back">ย้อนกลับ</button>
-    <button class="btn primary" id="next">เริ่มทำแบบสอบถาม</button>
+    <button class="btn primary" id="next">ยินยอมและเริ่มทำแบบสอบถาม</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -163,83 +166,53 @@
    ========================================================= */
 const LIKERT = ["5 เห็นด้วยอย่างยิ่ง","4 เห็นด้วย","3 ปานกลาง","2 ไม่เห็นด้วย","1 ไม่เห็นด้วยอย่างยิ่ง"];
 const NA = "ยังไม่เคยใช้/ประเมินไม่ได้";
-const LK_DESC = "ประเมินเฉพาะข้อที่มีประสบการณ์จริง หากยังไม่เคยใช้ความสามารถนั้นเลือก “ยังไม่เคยใช้/ประเมินไม่ได้”";
+const LK_DESC = "ข้อไหนยังไม่เคยใช้ แตะ “ยังไม่เคยใช้” หรือข้ามไปได้เลย";
 
+const STATUS_ID = 554191773, EDU_ID = 766905141, PROBLEM_ID = 601314728;
 const SECTIONS = [
-  { kicker:"ก่อนเริ่ม", title:"ความยินยอมในการให้ข้อมูล", items:[
-    {type:"radio", id:501755955, req:true, title:"การนำข้อมูลคำตอบไปใช้ประเมินและนำเสนอผลโครงการ",
-     desc:"การตอบเป็นไปโดยสมัครใจ หากไม่ยินยอมสามารถออกจากแบบสอบถามได้โดยไม่กระทบต่อการเรียนหรือการทำงาน",
-     options:["ยินยอมให้ใช้คำตอบแบบไม่ระบุตัวตนเพื่อประเมินและรายงานผล","ไม่ยินยอม"]}
+  { kicker:"1 / 3", title:"เกี่ยวกับคุณ", items:[
+    {type:"radio", id:STATUS_ID, req:true, title:"สถานภาพผู้ตอบ", cols:true, options:["นักศึกษา","อาจารย์","นักวิทยาศาสตร์/เจ้าหน้าที่","อื่น ๆ"]},
+    {type:"radio", id:EDU_ID, req:true, title:"ระดับการศึกษา", cols:true, options:["ปวส.","ปริญญาตรี","อื่น ๆ"],
+     showIf:()=>answers[STATUS_ID]==="นักศึกษา"},
+    {type:"radio", id:1458067327, req:true, title:"เคยใช้ AI สืบค้นข้อมูลวิทยาศาสตร์บ่อยแค่ไหน", cols:true, options:["ไม่เคยก่อนใช้ LabMind","ใช้นาน ๆ ครั้ง","ใช้เป็นบางครั้ง","ใช้เป็นประจำ"]},
+    {type:"radio", id:505988669, req:true, title:"เคยใช้ LabMind กี่ครั้ง", cols:true, options:["1 ครั้ง","2–5 ครั้ง","6–10 ครั้ง","มากกว่า 10 ครั้ง"]},
+    {type:"check", id:1476040938, title:"เคยใช้ LabMind ทำอะไรบ้าง", desc:"เลือกได้หลายข้อ", cols:true, options:["ค้นข้อมูลสารเคมีและสมบัติ","ค้นข้อมูลอันตราย/ความปลอดภัย","ค้นงานวิจัยหรือ DOI","แนะนำ/เปรียบเทียบวิธีวิเคราะห์","อธิบายขั้นตอนทดลอง","ตรวจสอบเวลาว่าง/จองเครื่องมือ","สอบถามการจัดการของเสีย","ส่งภาพฉลาก/กราฟ/หน้าจอเครื่องมือ","อื่น ๆ"]}
   ]},
-  { kicker:"ตอนที่ 1", title:"ประสบการณ์การใช้งาน", items:[
-    {type:"radio", id:554191773, req:true, title:"1. สถานภาพผู้ตอบ", cols:true, options:["นักศึกษา","อาจารย์","นักวิทยาศาสตร์/เจ้าหน้าที่","อื่น ๆ"]},
-    {type:"radio", id:766905141, req:true, title:"2. ระดับการศึกษา", desc:"ผู้ที่ไม่ใช่นักศึกษาเลือก “ไม่เกี่ยวข้อง”", cols:true, options:["ปวส.","ปริญญาตรี","อื่น ๆ","ไม่เกี่ยวข้อง"]},
-    {type:"radio", id:1458067327, req:true, title:"3. ประสบการณ์ใช้ AI เพื่อสืบค้นข้อมูลวิทยาศาสตร์", cols:true, options:["ไม่เคยก่อนใช้ LabMind","ใช้นาน ๆ ครั้ง","ใช้เป็นบางครั้ง","ใช้เป็นประจำ"]},
-    {type:"radio", id:505988669, req:true, title:"4. จำนวนครั้งที่เคยใช้ LabMind", cols:true, options:["1 ครั้ง","2–5 ครั้ง","6–10 ครั้ง","มากกว่า 10 ครั้ง"]},
-    {type:"check", id:1476040938, title:"5. ความสามารถของ LabMind ที่เคยใช้", desc:"เลือกได้หลายข้อ", cols:true, options:["ค้นข้อมูลสารเคมีและสมบัติ","ค้นข้อมูลอันตราย/ความปลอดภัย","ค้นงานวิจัยหรือ DOI","แนะนำ/เปรียบเทียบวิธีวิเคราะห์","อธิบายขั้นตอนทดลอง","ตรวจสอบเวลาว่าง/จองเครื่องมือ","สอบถามการจัดการของเสีย","ส่งภาพฉลาก/กราฟ/หน้าจอเครื่องมือ","อื่น ๆ"]}
+  { kicker:"2 / 3", title:"ให้คะแนน LabMind", desc:"แตะตัวเลข 1–5 ไม่ต้องคิดนาน ตอบตามความรู้สึกแรก", items:[
+    {type:"likert", title:"การใช้งานและคำตอบ", rows:[
+      [283019213,"เข้าใช้ผ่าน LINE สะดวก"],
+      [2146923867,"ภาษาคำตอบอ่านและเข้าใจง่าย"],
+      [846863314,"คำตอบตรงกับคำถาม"],
+      [1501629213,"อธิบายข้อมูลวิทยาศาสตร์ได้เข้าใจง่าย"],
+      [435951756,"มีลิงก์/แหล่งอ้างอิงให้ตรวจสอบได้"]]},
+    {type:"likert", title:"ประโยชน์และความพึงพอใจ", rows:[
+      [1379799500,"ทำให้ตระหนักว่าต้องตรวจคำตอบ AI ก่อนใช้จริง"],
+      [2101936889,"เป็นประโยชน์ต่อการค้นข้อมูลวิทยาศาสตร์"],
+      [1644889598,"มีประโยชน์ต่อการเรียน/สอน/วิจัย/ปฏิบัติงาน"],
+      [37145492,"โดยรวมพึงพอใจต่อ LabMind"],
+      [341236569,"อยากใช้งานต่อไป"]]}
   ]},
-  { kicker:"ตอนที่ 2", title:"ความสะดวกและคุณภาพคำตอบ", items:[
-    {type:"likert", title:"ด้านความสะดวกในการใช้งาน", rows:[
-      [283019213,"6. การเข้าใช้ LabMind ผ่าน LINE สะดวก"],
-      [1793680235,"7. พิมพ์คำถามภาษาไทยได้ง่าย"],
-      [2146923867,"8. ภาษาคำตอบอ่านและเข้าใจง่าย"],
-      [1224568284,"9. ความยาวคำตอบเหมาะกับการอ่านบน LINE"],
-      [854952869,"10. เข้าถึงข้อมูลที่ต้องการได้สะดวก"]]},
-    {type:"likert", title:"ด้านคุณภาพคำตอบ", rows:[
-      [846863314,"11. คำตอบเกี่ยวข้องกับคำถาม"],
-      [216109391,"12. มีข้อมูลเพียงพอสำหรับการค้นต่อ"],
-      [1501629213,"13. ช่วยอธิบายข้อมูลวิทยาศาสตร์ได้เข้าใจง่าย"],
-      [811593077,"14. ระบุข้อจำกัดของคำตอบเมื่อจำเป็น"],
-      [1582320035,"15. ใช้ประกอบการค้นคว้าหรือวางแผนต่อได้"]]}
-  ]},
-  { kicker:"ตอนที่ 3", title:"แหล่งอ้างอิงและการตรวจสอบ", items:[
-    {type:"likert", title:"ความน่าเชื่อถือและการตรวจสอบข้อมูล", rows:[
-      [435951756,"16. มีลิงก์/แหล่งอ้างอิงให้ตรวจสอบได้"],
-      [1782059847,"17. สามารถเปิดอ้างอิงเพื่อตรวจข้อมูลเพิ่มเติมได้"],
-      [1350436227,"18. ข้อมูลสอดคล้องกับแหล่งอื่นที่ได้ตรวจจริง"],
-      [637018027,"19. การแสดงอ้างอิงช่วยให้ตัดสินใจตรวจสอบต่อ"],
-      [1379799500,"20. ตระหนักว่าต้องตรวจสอบคำตอบ AI ก่อนนำไปใช้จริง"]]}
-  ]},
-  { kicker:"ตอนที่ 4", title:"ประโยชน์ต่อการเรียนและงาน", items:[
-    {type:"likert", title:"ประโยชน์ที่ได้รับ", rows:[
-      [2101936889,"21. เป็นประโยชน์ต่อการค้นข้อมูลวิทยาศาสตร์"],
-      [965250123,"22. ช่วยให้รู้แนวทางสืบค้นต่อ"],
-      [1103684726,"23. ช่วยให้เข้าใจวิธีวิเคราะห์หรือหลักการมากขึ้น"],
-      [2099366337,"24. ช่วยพิจารณาทางเลือกวิธีหรือเครื่องมือ"],
-      [1644889598,"25. มีประโยชน์ต่อการเรียน/สอน/วิจัย/ปฏิบัติงาน"]]}
-  ]},
-  { kicker:"ตอนที่ 5", title:"ความสามารถที่เคยใช้จริง", desc:"หากยังไม่เคยใช้หัวข้อใด เลือก “ยังไม่เคยใช้/ประเมินไม่ได้”", items:[
-    {type:"likert", title:"การค้นวิธีวิเคราะห์และเครื่องมือ", rows:[
-      [49598130,"26. ระบบแนะนำข้อมูล/วิธีที่เกี่ยวข้องกับโจทย์"],
-      [1768108673,"27. วิธีคลาสสิกและวิธีใช้เครื่องมือเป็นทางเลือกที่มีประโยชน์"],
-      [1834127096,"28. การแสดงเครื่องมือของสาขาช่วยวางแผนต่อ"]]},
-    {type:"likert", title:"การจองเครื่องมือ ความปลอดภัย และภาพ", rows:[
-      [759506723,"29. สอบถามเวลาว่างเครื่องมือผ่าน LINE สะดวก"],
-      [199100331,"30. ลิงก์จองจากคำตอบช่วยให้ดำเนินการต่อได้ง่าย"],
-      [954400463,"31. ค้นข้อมูลอันตรายของสารเคมีได้สะดวก"],
-      [1983294249,"32. ค้นแนวทางจัดการของเสียได้สะดวก"],
-      [1654035428,"33. การส่งภาพช่วยให้ได้คำอธิบายที่เป็นประโยชน์"]]}
-  ]},
-  { kicker:"ตอนที่ 6", title:"ความพึงพอใจและข้อเสนอแนะ", items:[
-    {type:"likert", title:"ความพึงพอใจโดยรวม", rows:[
-      [37145492,"34. โดยรวมพึงพอใจต่อ LabMind"],
-      [341236569,"35. ต้องการใช้งานต่อไป"],
-      [1542959242,"36. เหมาะสมที่จะพัฒนาเป็นระบบสนับสนุนของสาขา"]]},
-    {type:"radio", id:668991101, req:true, title:"37. ความสามารถที่มีประโยชน์ที่สุด", cols:true, options:["ค้นข้อมูลสารเคมี","ค้นงานวิจัย/วิธีวิเคราะห์","แนะนำเครื่องมือและวิธีทางเลือก","ตรวจ/จองเครื่องมือ","ความปลอดภัย/ของเสีย","อ่านภาพ","อื่น ๆ"]},
-    {type:"radio", id:601314728, req:true, title:"38. เคยพบคำตอบผิด ไม่ตรงคำถาม หรือไม่ชัดเจนหรือไม่", cols:true, options:["ไม่เคยพบ","เคยพบ","ไม่แน่ใจ"]},
-    {type:"text", id:1510279308, title:"39. หากเคยพบปัญหา กรุณายกตัวอย่าง", desc:"ไม่บังคับ", placeholder:"เช่น ถามเรื่อง… แล้วได้คำตอบที่…"},
-    {type:"check", id:109963386, title:"40. ด้านที่อยากให้ปรับปรุง", desc:"เลือกได้หลายข้อ", cols:true, options:["ความถูกต้อง","แหล่งอ้างอิง","ความครบถ้วน","ความเร็ว","ความกระชับ","วิธีวิเคราะห์","ระบบจอง","ความปลอดภัย","อ่านภาพ","อื่น ๆ"]},
-    {type:"text", id:1302900905, title:"41. ข้อเสนอแนะเพิ่มเติม", desc:"ไม่บังคับ", placeholder:"พิมพ์ข้อเสนอแนะของคุณที่นี่"}
+  { kicker:"3 / 3", title:"เกือบเสร็จแล้ว", items:[
+    {type:"radio", id:668991101, req:true, title:"ความสามารถที่มีประโยชน์ที่สุด", cols:true, options:["ค้นข้อมูลสารเคมี","ค้นงานวิจัย/วิธีวิเคราะห์","แนะนำเครื่องมือและวิธีทางเลือก","ตรวจ/จองเครื่องมือ","ความปลอดภัย/ของเสีย","อ่านภาพ","อื่น ๆ"]},
+    {type:"radio", id:PROBLEM_ID, req:true, title:"เคยเจอคำตอบผิด ไม่ตรงคำถาม หรือไม่ชัดเจนไหม", cols:true, options:["ไม่เคยพบ","เคยพบ","ไม่แน่ใจ"]},
+    {type:"text", id:1510279308, title:"เจอปัญหาแบบไหน", desc:"ไม่บังคับ", placeholder:"เช่น ถามเรื่อง… แล้วได้คำตอบที่…",
+     showIf:()=>answers[PROBLEM_ID]==="เคยพบ"},
+    {type:"check", id:109963386, title:"อยากให้ปรับปรุงด้านไหน", desc:"ไม่บังคับ · เลือกได้หลายข้อ", cols:true, options:["ความถูกต้อง","แหล่งอ้างอิง","ความครบถ้วน","ความเร็ว","ความกระชับ","วิธีวิเคราะห์","ระบบจอง","ความปลอดภัย","อ่านภาพ","อื่น ๆ"]},
+    {type:"text", id:1302900905, title:"อยากบอกอะไรเพิ่มเติมไหม", desc:"ไม่บังคับ", placeholder:"พิมพ์สั้น ๆ ก็ได้"}
   ]}
 ];
-const CONSENT_YES = SECTIONS[0].items[0].options[0];
+const CONSENT_YES = 'ยินยอมให้ใช้คำตอบแบบไม่ระบุตัวตนเพื่อประเมินและรายงานผล';
 const CONSENT_ID = 501755955;
 
 /* ========================================================= */
 const answers = {};            // { entryId: string | string[] }
 let step = -1;                 // -1 = หน้าแรก, 0..6 = ตอน, 7 = เสร็จ
 const app = document.getElementById('app');
-const isLive = typeof google !== 'undefined' && google.script && google.script.run;
+const FORM_PUBLIC_ID = '1FAIpQLSevs535Hn021Q-j_Wg4aQzZip6vmPvwln0zQEQcka_fmG2MpA';
+// โหมดการส่ง: 'appsscript' = รันใน Apps Script, 'direct' = เว็บทั่วไป เช่น GitHub Pages, 'demo' = หน้าตัวอย่าง
+const MODE = (typeof google !== 'undefined' && google.script && google.script.run) ? 'appsscript'
+  : (/^https?:$/.test(location.protocol) && !/claude/.test(location.hostname)) ? 'direct' : 'demo';
+const isLive = MODE !== 'demo';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function heroHTML(){
@@ -256,11 +229,16 @@ function heroHTML(){
       <p>แบบสอบถามสำหรับนักศึกษาในรายวิชาสารสนเทศทางเคมี และอาจารย์/บุคลากรที่เคยใช้งานจริง</p>
       <p>ใช้ศึกษาความสะดวก คุณภาพคำตอบ การตรวจสอบแหล่งอ้างอิง ประโยชน์ และความพึงพอใจ</p>
       <div class="meta">
-        <span>⏱ ประมาณ 6–8 นาที</span>
+        <span>⏱ ประมาณ 3 นาที</span>
         <span>🔒 ไม่เก็บชื่อหรือรหัสนักศึกษา</span>
         <span>📊 รายงานผลเป็นภาพรวม</span>
         <span>🙋 เข้าร่วมโดยสมัครใจ</span>
       </div>
+    </div>
+    <div class="consent">
+      <b>ก่อนเริ่ม</b>
+      <p>คำตอบจะใช้ประเมินและนำเสนอผลโครงการแบบไม่ระบุตัวตน การตอบเป็นไปโดยสมัครใจ และไม่มีผลต่อการเรียนหรือการทำงาน</p>
+      <p>เมื่อกด <b>“ยินยอมและเริ่มทำแบบสอบถาม”</b> ถือว่าคุณยินยอมให้ใช้คำตอบตามวัตถุประสงค์ข้างต้น หากไม่ต้องการเข้าร่วม ปิดหน้านี้ได้เลย และระบบจะไม่บันทึกข้อมูลใด ๆ</p>
     </div>
     ${isLive ? '' : '<div class="demo">โหมดตัวอย่าง: หน้านี้ยังไม่ส่งคำตอบจริง จะส่งได้เมื่อ Deploy ผ่าน Apps Script</div>'}
   </section>`;
@@ -335,7 +313,24 @@ function render(){
   bind();
 }
 
+function applyConditions(){
+  SECTIONS.forEach((s,i) => s.items.forEach((it,k) => {
+    if (!it.showIf) return;
+    const card = document.getElementById(`s${i}i${k}`);
+    const vis = !!it.showIf();
+    if (card.style.display === (vis ? '' : 'none')) return;
+    card.style.display = vis ? '' : 'none';
+    if (!vis){
+      delete answers[it.id];
+      card.querySelectorAll('.on').forEach(e => e.classList.remove('on'));
+      card.querySelectorAll('textarea').forEach(t => t.value = '');
+      card.classList.remove('invalid');
+    }
+  }));
+}
+
 function bind(){
+  applyConditions();
   // radio / checkbox
   app.querySelectorAll('.opt').forEach(el => el.addEventListener('click', e => {
     e.preventDefault();
@@ -350,6 +345,7 @@ function bind(){
       if (Number(id) === CONSENT_ID) updateNextLabel();
     }
     el.closest('.card').classList.remove('invalid');
+    applyConditions();
   }));
   // likert
   app.querySelectorAll('.sc, .na').forEach(el => el.addEventListener('click', () => {
@@ -369,11 +365,10 @@ function bind(){
 const nextBtn = document.getElementById('next');
 const backBtn = document.getElementById('back');
 
-function consentGiven(){ return answers[CONSENT_ID] === CONSENT_YES; }
+function consentGiven(){ return true; }
 
 function updateNextLabel(){
-  if (step === -1) nextBtn.textContent = 'เริ่มทำแบบสอบถาม';
-  else if (step === 0 && answers[CONSENT_ID] && !consentGiven()) nextBtn.textContent = 'ส่งแบบสอบถาม';
+  if (step === -1) nextBtn.textContent = 'ยินยอมและเริ่มทำแบบสอบถาม';
   else if (step === SECTIONS.length - 1) nextBtn.textContent = 'ส่งแบบสอบถาม';
   else nextBtn.textContent = 'ถัดไป';
 }
@@ -395,6 +390,7 @@ function validate(n){
   const sec = app.querySelector(`.section[data-step="${n}"]`);
   let first = null;
   sec.querySelectorAll('.card[data-req="1"]').forEach(c => {
+    if (c.style.display === 'none') return;
     const v = answers[c.dataset.id];
     const ok = Array.isArray(v) ? v.length : !!v;
     c.classList.toggle('invalid', !ok);
@@ -407,13 +403,14 @@ function validate(n){
 nextBtn.addEventListener('click', () => {
   if (step === -1) return show(0);
   if (!validate(step)) return;
-  if (step === 0 && !consentGiven()) return submit(false);
   if (step < SECTIONS.length - 1) return show(step + 1);
   submit(true);
 });
 backBtn.addEventListener('click', () => { if (typeof step === 'number' && step >= 0) show(step - 1); });
 
 function submit(consent){
+  answers[CONSENT_ID] = CONSENT_YES;   // ผู้ตอบกดยินยอมที่หน้าแรกแล้ว
+  if (consent && answers[STATUS_ID] !== 'นักศึกษา') answers[EDU_ID] = 'ไม่เกี่ยวข้อง';
   const payload = { consent, answers: consent ? answers : { [CONSENT_ID]: answers[CONSENT_ID] } };
   nextBtn.disabled = true; backBtn.disabled = true;
   nextBtn.textContent = 'กำลังส่ง…';
@@ -430,8 +427,28 @@ function submit(consent){
     toast('ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
     console.error(err);
   };
-  if (isLive){
+  if (MODE === 'appsscript'){
     google.script.run.withSuccessHandler(finish).withFailureHandler(fail).submitResponse(payload);
+  } else if (MODE === 'direct'){
+    // ส่งผ่าน <form> ที่ซ่อนอยู่ (วิธีมาตรฐาน ไม่ติดปัญหา CORS)
+    const fields = [];
+    Object.entries(payload.answers).forEach(([id, v]) => {
+      (Array.isArray(v) ? v : [v]).forEach(x => { if (x != null && String(x).trim() !== '') fields.push(['entry.' + id, x]); });
+    });
+    fields.push(['pageHistory', consent ? '0,1,2,3,4,5,6' : '0,7'], ['fvv', '1']);
+    const ifr = document.createElement('iframe');
+    ifr.name = 'gf_sink'; ifr.style.display = 'none';
+    document.body.appendChild(ifr);
+    const f = document.createElement('form');
+    f.action = 'https://docs.google.com/forms/d/e/' + FORM_PUBLIC_ID + '/formResponse';
+    f.method = 'POST'; f.target = 'gf_sink'; f.acceptCharset = 'UTF-8'; f.style.display = 'none';
+    fields.forEach(([k, v]) => { const i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = v; f.appendChild(i); });
+    document.body.appendChild(f);
+    let done = false;
+    const once = () => { if (!done){ done = true; finish(); } };
+    ifr.addEventListener('load', once);
+    setTimeout(once, 3500);
+    f.submit();
   } else {
     console.log('DEMO payload', payload);
     setTimeout(finish, 700);
